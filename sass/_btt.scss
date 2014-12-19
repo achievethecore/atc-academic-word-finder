@@ -1,0 +1,14 @@
+
+a.btt {
+	position: fixed;
+	right: 10px;
+	top: 49%;
+	/*margin-right: -664px;*/
+	opacity: 0;
+	transition: 0.5s opacity ease;
+	pointer-events: none;
+	&.shown {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}

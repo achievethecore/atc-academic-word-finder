@@ -1,0 +1,735 @@
+@import "prefixer";
+@import "transform";
+
+
+.loggedin {
+    .landing {
+        .atf {
+            .header {
+                .lr {
+                    .btn-login, .btn-register {
+                        display: none;
+                    }
+
+                    .btn-saved, .btn-account {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.landing-main, .landing-info, .landing-login {
+	opacity: 0;
+	transform: translate(0px, 24px);
+	visibility: hidden; 
+	transition: all 0.5s ease;
+}
+
+.view-landing .landing-main {
+	opacity: 1.0;
+	transform: translate(0px, 0px);
+	visibility: visible;
+}
+
+.view-createnew .landing-info {
+	opacity: 1.0;
+	transform: translate(0px, 0px);
+	visibility: visible;
+}
+
+.view-login .landing-login {
+	opacity: 1.0;
+	transform: translate(0px, 0px);
+	visibility: visible;
+}
+
+
+.landing {
+
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 25;
+    width: 100%;
+
+    .atf {
+        position: relative;
+        width: 100%;
+        
+		&::before {
+		    background-color: #e8e6e0;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    content: "";
+		    transition: opacity 0.5s ease;
+		    opacity: 1;
+		    z-index: -1;
+		}
+		
+		.view-landing &::before {
+		    opacity: 0;
+		}
+		
+		.lt-ie9 .view-createnew &, .lt-ie9 .view-login & {
+			background-color: #e8e6e0;
+			background-image: none;
+		}
+
+    }
+
+    .btf {
+        position: relative;
+        background-color: $lighterGrey;
+        min-height: 300px; // temp
+    }
+
+
+    &.deep {
+        .atf {
+            background-color: #bfe3d2;
+            @include bg("bg-splash-b.jpg");
+
+            .header {
+                .lr {
+                    color: $darkGrey;
+                    a {
+                        color: $darkGrey;
+                    }
+                }
+            }
+
+            .bottom {
+                display: none;
+            }
+        }
+
+        .btf {
+            display: none;
+        }
+    }
+    
+    &.btf {
+        .atf {
+            height: 100px !important;
+            z-index: 2;
+            
+            .middle .landing-main {
+                margin-top: -34px;
+                // zoom: 0.8;
+                @include transform(scale(0.8));
+                @include transform-origin(right center);
+				-moz-transform: scale(0.8); /* no zoom in moz */
+				-moz-transform-origin: right center;
+                right: 40px;
+                left: auto;
+                width: auto;
+                h1 { display: none; }
+            }
+            .header .atc { 
+				padding-right: 560px;
+				font-weight: normal;
+				font-size: 11pt;
+			}
+            .lr { display: none; }
+            .bottom { display: none; }
+        }
+    }
+
+    .atf {
+        background-color: $darkGreen;
+        @include bg("bg-splash-a.jpg");
+        background-size: cover;
+        transition: background-color 0.2s ease;
+        position: fixed;
+        z-index: 0;
+
+        .header {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            z-index: 2;
+            
+            .atc {
+                position: absolute;
+                left: 80px;
+                font-size: 15pt;
+                color: #fff;
+                font-weight: normal;
+                padding-right: 500px;
+                
+                img {
+					position: absolute;
+					&.logo-grey {
+						display: none;
+						.view-createnew &, .view-continue &, .view-login &, .view-results & {
+							display: block;
+						}
+					}
+					&.logo-white {
+						display: block;
+						.view-createnew &, .view-continue &, .view-login &, .view-results & {
+							display: none;
+						}
+					}
+				}
+            }
+/*
+            .atc:before {
+                @include icon("-", 14pt);
+                margin-right: 5px;
+            }
+*/
+            .lr {
+                position: absolute;
+                right: 100px;
+                font-size: 12pt;
+                color: #fff;
+                top: 5px;
+
+                a {
+                    color: #fff;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: $lightGreen;
+                    }
+                }
+
+                .btn-login:before {
+                    @include icon("R", 15pt);
+                    font-weight: normal;
+                    position: absolute;
+                    top: -5px;
+                    left: -17px;
+                }
+
+                .btn-saved, .btn-account {
+                    display: none;
+                }
+            }
+        }
+
+        .middle {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            .landing-main {
+                position: absolute;
+                top: 50%;
+                margin-top: -96px;
+                text-align: center;
+                width: 100%;
+                transition: margin 0.5s ease;
+
+                h1 {
+                    color: #fff;
+                    font-size: 58pt;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    font-family: 'museo_sans100';
+					width: 760px;
+					margin-left: auto;
+					margin-right: auto;
+                }
+
+                .landing-btn {
+                    @include box;
+                    display: inline-block;
+                    width: 305px;
+                    height: 62px;
+                    border: 1px solid #fff;
+                    border-radius: 2px;
+                    transition: 0.2s ease;
+                    color: #fff;
+                    font-size: 12pt;
+                    text-align: center;
+                    font-weight: bold;
+                    padding-top: 0px;
+                    line-height: 60px;
+
+                    &:hover {
+                        background-color: #fff;
+                        border-color: #fff;
+                        color: $lightGreen;
+                    }
+                }
+
+                .btn-new {
+                    margin-right: 30px;
+
+                    span:before {
+                        @include icon("+", 14pt);
+                        margin-right: 15px;
+						position: relative;
+						top: -3px;
+						vertical-align: middle;
+                    }
+                }
+
+                .btn-continue {
+                    span:before {
+                        @include icon("]", 14pt);
+                        margin-right: 15px;
+						position: relative;
+						top: -3px;
+						vertical-align: middle;
+                    }
+                }
+            }
+
+            .landing-info {
+                position: absolute;
+                top: 120px;
+                margin-top: -140px;
+                /*display: none;
+                opacity: 0;*/
+                width: 100%;
+
+                h1 {
+                    text-align: center;
+                    font-size: 34pt;
+                    margin-bottom: 30px;
+                    color: $darkGrey;
+                    font-family: 'museo_sans100';
+                }
+
+                .landing-dropdown {
+                    position: relative;
+                    text-align: center;
+
+                    .toggle {
+                        position: relative;
+                        width: 650px;
+                        height: 50px;
+                        border-radius: 3px;
+                        border: 1px solid $darkGreen;
+                        color: $darkGreen;
+                        display: inline-block;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 14px;
+                        padding-top: 14px;
+                        transition: 0.2s ease;
+                        font-family: 'museo_sans100';
+
+                        span {
+                            position: absolute;
+                            @include iconFont;
+                            right: 24px;
+                            top: 12px;
+                        }
+
+                        &:hover {
+                            background-color: $darkGreen;
+                            color: #fff;
+                        }
+                    }
+
+                    ul {
+                        position: absolute;
+                        float: none;
+                        width: 650px;
+                        margin: 0 auto;
+                        left: 50%;
+                        margin-left: -325px;
+                        padding: 0;
+                        background-color: #bfe3d2;
+
+                        li {
+                            margin-bottom: 1px;
+                        }
+
+                        li:last-of-type {
+                            margin-bottom: 0px;
+                        }
+
+                        a {
+                            background-color: $darkGreen;
+                            transition: 0.2s ease;
+                            color: #fff;
+                            width: 650px;
+                            height: 45px;
+                            font-weight: bold;
+                            font-size: 14px;
+                            padding-top: 14px;
+
+                            &:hover {
+                                background-color: $lightGreen;
+                            }
+                        }
+                    }
+
+                    &.open {
+                        .toggle {
+                            background-color: $darkGreen;
+                            color: #fff;
+                        }
+                    }
+                }
+
+                #dropdown-subject {
+                    margin-bottom: 15px;
+                }
+
+                #dropdown-grade {
+                    ul {
+                        li {
+                            display: block;
+                            float: left;
+                            width: (100.0%/13.0);
+                            height: 49px;
+                            /*border-bottom: 1px solid transparent;*/
+                            border-right: 1px solid transparent;
+                            padding: 0;
+
+                            a {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                padding-top: 13px;
+                                font-size: 16px;
+                                font-weight: normal;
+                            }
+
+                            .empty {
+                                background-color: $darkGreen;
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                            }
+                        }
+
+                        /*li:nth-child(5n) {
+                            border-right: 0px;
+                        }*/
+                    }
+                }
+            }
+
+            .landing-login {
+                position: absolute;
+                top: 50%;
+                margin-top: -140px;
+                visibility: hidden;
+                opacity: 0;
+                width: 100%;
+                text-align: center;
+                
+				.view-login & {
+					opacity: 1.0;
+					visibility: visible;
+				}
+
+                h1 {
+                    text-align: center;
+                    font-size: 34pt;
+                    margin-bottom: 30px;
+                    color: $darkGrey;
+                }
+
+                input {
+                    position: relative;
+                    width: 650px;
+                    width: 650px;
+                    height: 65px;
+                    font-weight: bold;
+                    font-size: 16pt;
+                    border: 1px solid $darkGreen;
+                    color: $darkGreen;
+                    background-color: transparent;
+                    outline: none;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    border-radius: 3px;
+
+                    &:focus {
+                        background-color: rgba(42,142,81,0.3);
+                    }
+                }
+
+                .em {
+                    position: relative;
+                    width: 650px;
+                    margin: 0 auto; 
+                }
+
+                .pw {
+                    position: relative;
+                    width: 650px;
+                    margin: 0 auto;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+
+                    a {
+                        position: absolute;
+                        right: 12px;
+                        font-family: SAPIcons;
+                        -webkit-font-smoothing: antialiased;
+                        color: $darkGreen;
+                        font-size: 29pt;
+                        line-height: 63px;
+
+                        &:hover {
+                            color: $rollGreen;
+                        }
+                    }
+                }
+
+                .btn-submit {
+                    position: relative;
+                    margin: 0 auto;
+                    width: 650px;
+                    height: 65px;
+                    border: 1px solid $darkGreen;
+                    color: $darkGreen;
+                    display: block;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 14pt;
+                    padding-top: 16px;
+                    transition: 0.2s ease;
+                    margin-bottom: 15px;
+
+                    &:hover {
+                        background-color: $darkGreen;
+                        color: #fff;
+                    }
+                }
+
+                span {
+                    font-size: 16pt;
+
+                    a {
+                        text-decoration: underline;
+                        color: $darkGreen;
+
+                        &:hover {
+                            color: $rollGreen
+                        }
+                    }
+                }
+
+                .errors {
+                    text-align: left;
+                    color: #dd3f3f;
+                }
+
+                .em.has-error, .pw.has-error {
+                    input {
+                        border-color: #dd3f3f;
+                    }
+
+                    .btn-forgot {
+                        top: 18px;
+                    }
+
+                    p {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+
+        .bottom {
+        	cursor: pointer;
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            font-size: 17pt;
+            //display: none; // temporary
+
+            div {
+                 @include iconFont;
+            }
+        }
+    }
+
+    .btf {
+        background-color: #fff;
+        //display: none; // temporary
+        z-index: 1;
+        position: relative;
+        
+        padding: 100px 100px;
+        
+        .welcome-2col {
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+			max-width: 1090px;
+			padding-bottom: 40px;
+		}
+        
+        a {
+			outline: 0;
+		}
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            font-family: museo_sans100;
+        }
+        .subhed {
+            text-align: center;
+            font-size: 24px;
+            width: 65%;
+            margin: 20px auto 90px;
+        }
+        .nav-column {
+            display: table-cell;
+            width: 33%;
+            text-transform: uppercase;
+            a { 
+				font-family: museo_sans500;
+  				display: inline-block;
+  				padding: 20px 0 0;
+  				border-bottom: 2px transparent solid;
+			}
+			a:hover, li.active a {
+				border-bottom-color: #25a56a;
+				background-color: transparent !important;
+			}
+            .nav.affix { top: 140px; }
+        }
+        .main-column {
+            display: table-cell;
+            
+            img { width: 100%; margin-bottom: 40px; }
+            .landing-main { margin-top: 60px; }
+        }
+        h2 {
+            font-size: 18px;
+            text-transform: uppercase;
+            font-family: museo_sans300;
+            margin-bottom: 60px;
+        }
+        h3 {
+            color: #333;
+            font-size: 34px;
+            font-family: museo_sans100;
+        }
+		p + h3 {
+			margin-top: 70px;
+		}
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        td h3 {
+            font-size: 24px;
+        }
+        td p {
+            font-size: 14px;
+        }
+        hr {
+            border-color: #ccc;
+            margin: 60px 0;
+        }
+        
+		.welcome-icon .icon-sap {
+            font-family: SAPIcons;
+            margin-right: -15px;
+        }
+        .icon-box {
+            color: $lightGrey;
+            text-align: center;
+            border: 2px solid $lightGrey;
+            padding-left: 0;
+            font-size: 44px;
+            width: 90px;
+            height: 90px;
+            display: block;
+            line-height: 90px;
+        }
+        table {
+            border-spacing: 0px 20px;
+            border-collapse: separate;
+        }
+        table td {
+            padding-left: 40px;
+        }
+        table td.welcome-icon {
+			padding-left: 0;
+		}
+        .dotted .icon-box {
+            border-style: dashed;
+        }
+        .icon-sap + .icon-sap {
+            font-size: 90%;
+            position: relative;
+            left: 6px;
+        }
+        
+        
+                .landing-btn {
+                    @include box;
+                    display: inline-block;
+                    width: 305px;
+                    height: 62px;
+                    border: 1px solid $darkGreen;
+                    border-radius: 2px;
+                    transition: 0.2s ease;
+                    color: $darkGreen;
+                    font-size: 12pt;
+                    text-align: center;
+                    font-weight: bold;
+                    padding-top: 14px;
+
+                    &:hover {
+                        border-color: $lightGreen;
+                        color: $lightGreen;
+                    }
+                }
+
+                .btn-new {
+                    margin-right: 30px;
+
+                    span:before {
+                        @include icon("+", 14pt);
+                        margin-right: 15px;
+                    }
+                }
+
+                .btn-continue {
+                    span:before {
+                        @include icon("]", 14pt);
+                        margin-right: 15px;
+                    }
+                }
+        
+        
+    }
+}
+
+.dd-hs {
+    display: none !important;
+    border-right: 0px;
+}
+
+.ela {
+    .dd-hs {
+        display: none !important;
+    }
+    .dd-ela {
+        display: block !important;
+    }
+}
+
+.math {
+    .dd-ela {
+        display: none !important;
+    }
+    .dd-hs {
+        display: block !important;
+        border-right: 0px !important;
+    }
+}

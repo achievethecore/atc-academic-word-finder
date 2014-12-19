@@ -1,0 +1,27 @@
+{
+  "name": "react-webpack-template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack --progress --colors --watch",
+    "build": "webpack -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "css-loader": "^0.8.0",
+    "envify": "^3.0.0",
+    "jquery": "^2.1.1",
+    "jsx-loader": "^0.11.0",
+    "react": "^0.11.2",
+    "underscore": "^1.7.0",
+    "webpack": "^1.4.0-beta9"
+  },
+  "devDependencies": {
+    "webpack": "*",
+    "jsx-loader": "*"
+  }
+}

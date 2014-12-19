@@ -1,0 +1,938 @@
+@import "sap_common/bootstrap";
+@import "sap_common/fonts";
+@import "sap_common/colors";
+@import "sap_common/modal";
+@import "sap_common/mixins";
+@import "sap_common/landing";
+
+html, body {
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+}
+
+html, body {
+    height: 100%;
+    min-width: 960px;
+    min-height: 900px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: $darkGreen;
+}
+
+html, body, a, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'museo_sans300';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+}
+
+a {
+    color: #25a56a;
+}
+
+a:hover, a:focus {
+    color: #155C3A;
+    text-decoration: none;
+}
+
+b { font-family: museo_sans500; font-weight:500; }
+
+h2 {
+    font-family: museo_sans100;
+    font-size: 48px;
+    margin-top: 10px;
+}
+
+h3 {
+    color: #25a56a;
+    font-size: 18px;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14pt;
+}
+
+input::-ms-clear {
+    width : 0;
+    height: 0;
+}
+
+input::-ms-reveal {
+    width : 0;
+    height: 0;
+}
+
+
+.landing {
+	transition: visibility 0.5s ease, opacity 0.5s ease;
+}
+
+.landing .atf .middle .landing-info {
+	padding: 0 140px;
+	margin-top: 0;
+	
+	h1 {
+		text-align: left;
+		margin-bottom: 11px;
+	}
+	h1 + p {
+		font-size: 16px;
+	}
+	
+	$width: 765px;
+	$vspace: 30px;
+	
+	textarea {
+		margin-top: $vspace;
+		margin-bottom: $vspace;
+		height: 256px;
+		width: $width;
+		background: $lightestGrey;
+		border: 1px solid $darkGrey;
+		padding: 20px;
+		font-size: 16px;
+		resize: none;
+	}
+	
+	.landing-dropdown {
+		text-align: left;
+		margin-bottom: $vspace;
+		.toggle {
+			width: $width;
+			text-align: left;
+			padding-left: 30px;
+		}
+		ul {
+			width: $width;
+			left: 0;
+			margin-left: 0;
+			text-align: center;
+		}
+	}
+	
+               .btn-submit {
+                    position: relative;
+                    /*margin: 0 auto;*/
+                    width: $width;
+                    height: 62px;
+                    border: 1px solid $darkGreen;
+                    color: $darkGreen;
+                    display: block;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 11pt;
+                    padding-top: 20px;
+                    transition: 0.2s ease;
+                    margin-bottom: 15px;
+                    
+                    span:before {
+                        @include icon(" ]", 11pt);
+                        margin-right: 15px;
+                    }
+
+                    &:hover {
+                        background-color: $darkGreen;
+                        color: #fff;
+                    }
+                    
+                    opacity: 1;
+                    &.invisible {
+						opacity: 0;
+					}
+                }
+
+}
+
+
+.view-results {
+	.landing {
+		opacity: 0;
+		visibility: hidden;
+	}	
+}
+
+
+.results {
+        .header {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            
+            .atc {
+                position: absolute;
+                left: 80px;
+                font-size: 15pt;
+                color: #fff;
+                font-weight: normal;
+                padding-right: 500px;
+                
+                img {
+					position: absolute;
+					&.logo-grey {
+						display: none;
+						.view-createnew &, .view-continue &, .view-login &, .view-results & {
+							display: block;
+						}
+					}
+					&.logo-white {
+						display: block;
+						.view-createnew &, .view-continue &, .view-login &, .view-results & {
+							display: none;
+						}
+					}
+				}
+            }
+/*
+            .atc:before {
+                @include icon("-", 14pt);
+                margin-right: 5px;
+            }
+*/
+
+            .lr {
+                position: absolute;
+                right: 100px;
+                font-size: 12pt;
+                color: #fff;
+                top: 5px;
+
+                a {
+                    color: #fff;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: $lightGreen;
+                    }
+                }
+
+                .btn-login:before {
+                    @include icon("R", 15pt);
+                    font-weight: bold;
+                    position: absolute;
+                    top: -5px;
+                    left: -17px;
+                }
+
+                .btn-saved, .btn-account {
+                    display: none;
+                }
+            }
+        }
+}
+
+
+
+
+@mixin greyBtn {
+	border: 1px solid $lightGrey;
+    background: transparent;
+    
+    color: $lightGrey;
+    transition: 0.2s ease;
+    
+    &:hover {
+	    color: #fff;
+	    background: $lightGrey;
+	}
+}
+
+.results .loadmore.btn {
+	@include greyBtn;
+    width: 100%;
+}
+
+
+.results-text .btn {
+    @include greyBtn;
+    width: 100%;
+}
+
+.results {
+    /*max-width: 1024px;*/
+    padding: 190px 120px 70px 100px;
+	overflow: hidden;
+	height: 0;
+    z-index: 1;
+    position: relative;
+}
+.view-results .results {
+    height: auto;
+    overflow: visible;
+}
+body {
+	transition: background-color 0.5s ease;
+}
+body.view-createnew, body.view-continuesaved, body.view-login {
+    background: $lighterGrey;
+}
+body.view-results {
+    background: white;
+}
+.results h2 {
+    font-size: 26px;
+    font-family: museo_sans300;
+}
+.results-text p {
+    font-size: 14px;
+
+}
+.results-filter button {
+    background: transparent;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 12px;
+    font-family: museo_sans700;
+    letter-spacing: 0.4px;
+    padding: 10px 0px;
+    margin: 0 20px;
+}
+.results-filter button:hover {
+    border-bottom: 2px solid;
+}
+
+h1, h2, h3, button, th {
+    letter-spacing: 0.45px;
+}
+.results th {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-family: museo_sans500;
+    font-weight: normal;
+    padding-bottom: 19px;
+    border-bottom: 1px solid $lightGrey;
+    color: $lightGrey;
+}
+.results table {
+    border-spacing: 20px;
+    border-collapse: separate;
+    table-layout: fixed;
+    margin-left: -20px;
+    margin-top: 70px;
+}
+.results td {
+    vertical-align: top;
+}
+.results tbody tr:first-child td {
+    padding-top: 20px;
+}
+.results tbody tr td:first-child {
+    font-family: museo_sans500;
+}
+.results .header {
+}
+.results { position: relative; max-width: 1024px; }
+/*.results > * {
+    max-width: 844px;
+}*/
+.results .fixednav {
+    position: fixed;
+    max-width: 100%;
+    background: $lighterGrey;
+    top: 0;
+    left: 0;
+    height: 90px;
+    z-index: 100;
+    right: 0;
+}
+.secondnav {
+    height: 64px;
+    background: $darkGrey;
+    top: 90px;
+    position: absolute;
+    width: 100%;
+}
+.view-results .header .atc, .view-login .header > div, .view-createnew .header > div, .view-continuesaved .header > .atc {
+    color: $darkGrey !important;
+}
+.view-results .header .lr {
+    display: none;
+}
+
+.results-summary h3 {
+    color: $darkGrey;
+    font-size: 37px;
+    font-family: museo_sans100;
+    float: left;
+    padding-right: 10px;
+}
+.results-summary .attrib {
+    float: left;
+    font-size: 8px;
+    text-transform: uppercase;
+    color: $lightGrey;
+    width: 140px;
+    letter-spacing: 1px;
+    padding-top: 9px;
+}
+.wkhtmltopdf .results-summary .attrib {
+	letter-spacing: 0;
+}
+.results-summary {
+    margin-top: 70px;
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid $lighterGrey;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.results-summary .actions {
+    float: right;
+    text-align: right;
+    
+    .btn {
+		@include greyBtn;
+	    margin-left: 10px;
+	    font-size: 11px;
+	    font-family: museo_sans500;
+	    text-transform: uppercase;
+	    border-radius: 2px;
+		height: 30px;
+		padding: 6px 12px;
+		margin-top: 6px;
+	}
+	.plusbtn {
+	    position: relative;
+	    padding-left: 40px;
+	    display: inline-block;
+		span {
+		    position: absolute;
+		    width: 33px;
+		    border-right: 1px solid $lightGrey;
+		    height: 100%;
+		    left: 0;
+		    top: 0;
+		    text-align: center;
+		    padding-left: 3px;
+			&:before {
+			    @include icon('+', 19px);
+			    line-height: 25px;
+			}
+		}
+	}
+	.iconbtn {
+	    font-family: SAPIcons;
+	    -webkit-font-smoothing: antialiased;
+	    font-size: 23px;
+	    line-height: 0px;
+	    padding-right: 0;
+	    width: 30px;
+	    padding-top: 0;
+	    padding-left: 5px;
+	    text-transform: none;
+	}
+}
+.results label {
+    display: inline-block;
+    width: 70px;
+    color: $lightGrey;
+}
+
+.view-createnew .landing .atf .header .lr a {
+    color: $darkGrey;
+}
+
+.secondnav a {
+    display: inline-block;
+    color: white;
+    text-transform: uppercase;
+    font-family: museo_sans700;
+    font-size: 13px;
+    height: 64px;
+    line-height: 64px;
+    padding: 0 28px;
+    letter-spacing: 0.45px;
+    transition: background-color 0.2s ease;
+}
+.secondnav ul {
+margin-left: 63px;
+}
+.secondnav li {
+    display: inline;
+}
+.secondnav a:hover {
+    background: #333;
+}
+
+
+sup {
+	color: $darkGreen;
+}
+
+a.above, button.above {
+	color: #e82e1f;
+}
+a.on, button.on {
+	color: #2a7251;
+}
+a.below, button.below {
+	color: #ffae00;
+}
+
+.filter-above .above, .filter-below .below, .filter-on .on, .filter-all .all {
+	border-bottom: 2px solid;
+}
+
+button:focus, .btn:focus {
+	outline: none;
+}
+
+ .tooltip-inner {
+ 	background-color: $lightGreen;
+ 	
+ 	}
+ 	
+ 	 .tooltip.top .tooltip-arrow {
+ 	border-top-color: $lightGreen;
+ }
+
+  .tooltip.bottom .tooltip-arrow {
+ 	border-bottom-color: $lightGreen;
+ }
+ 
+ 
+ 
+ .sort-widget {
+    display: inline-block;
+    margin-top: 20px;
+}
+ 
+ 
+ $dropdown-width: 290px;
+ $dropdown-height: 30px;
+                 .sort-dropdown {
+                    position: relative;
+                    text-align: left;
+
+                    .toggle {
+                        position: relative;
+                        width: $dropdown-width;
+                        height: $dropdown-height;
+                        border-radius: 3px;
+                        border: 1px solid $lightGrey;
+                        color: $lightGrey;
+                        display: inline-block;
+                        text-align: left;
+                        font-weight: bold;
+                        font-size: 14px;
+                        padding-top: ($dropdown-height*0.5-10);
+                        padding-left: 20px;
+                        transition: 0.2s ease;
+                        font-family: 'museo_sans100';
+
+                        span {
+                            position: absolute;
+                            @include iconFont;
+                            right: 24px;
+                            top: ($dropdown-height*0.5-12);
+                        }
+
+                        &:hover {
+                            background-color: $lightGrey;
+                            color: #fff;
+                        }
+                    }
+
+                    ul {
+                        position: absolute;
+                        float: none;
+                        width: $dropdown-width;
+                        margin: 0 auto;
+                        left: 50%;
+                        margin-left: -$dropdown-width/2;
+                        padding: 0;
+                        background-color: $lighterGrey;
+
+                        li {
+                            margin-bottom: 1px;
+                        }
+
+                        li:last-of-type {
+                            margin-bottom: 0px;
+                        }
+
+                        a {
+                            background-color: #fff;
+                            transition: 0.2s ease;
+                            color: $lightGrey;
+                            width: $dropdown-width;
+                            height: $dropdown-height - 5;
+                            font-weight: bold;
+                            font-size: 14px;
+                            padding-top: ($dropdown-height*0.5-10);
+
+                            &:hover {
+                                background-color: $lightGrey;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                    &.open {
+                        .toggle {
+                            background-color: $lighterGrey;
+                            color: #fff;
+                        }
+                    }
+                }
+          
+.results-text .btn {
+	display: none;
+}
+.results-text.hascut .btn {
+	display: block;
+}            
+.hascut .aftercut {
+	display: none;
+}
+.hascut .beforecut::after {
+	content: "...";
+}
+.showall .beforecut::after {
+	content: "";
+}
+.showall .aftercut {
+	display: inline;
+}
+
+
+.results-summary h3, .results-filter, .results table {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.loaded .results-summary h3, .loaded .results-filter, .loaded table {
+    opacity: 1;
+}
+
+
+.results > div, .results > h2 {
+    opacity: 0.05;
+}
+.results > .fixednav {
+    opacity: 1.0;
+}
+.results.loaded > div, .results.loaded > h2 {
+    opacity: 1.0;
+}
+
+.results::after {
+    content: "";
+    position: fixed;
+    top: 30%;
+    left: 140px;
+    width: 16px;
+    height: 11px;
+}
+.results.loaded::after {
+	display: none;
+}
+
+
+.modal p {
+    font-size: 14px;
+    word-break: break-word;
+}
+
+#aboutModal h4, #aboutModal p {
+    line-height: 1.5;
+}
+
+#aboutModal ul, #aboutModal li {
+    list-style: inherit;
+}
+
+#aboutModal ol ol li {
+    list-style-type: lower-alpha;
+}
+
+td sup {
+	cursor: pointer;
+    white-space: nowrap;
+}
+
+.view-results .header .lr {
+    display: block;
+}
+.results .header .lr #profilenamelink::before {
+font-size: 15pt;
+font-family: SAPIcons;
+-webkit-font-smoothing: antialiased;
+content: "R";
+font-weight: bold;
+position: absolute;
+top: -5px;
+left: -17px;
+}
+.results .header .lr .btn-login, .results .header .lr .btn-register {
+    display: none;
+}
+
+.view-results .header .lr > * {
+    display: inline-block;
+    padding-left: 100px;
+    min-width: 60px;
+}
+
+.results .header .lr a {
+	color: $darkGrey;
+    font-size: 14px;
+    font-family: museo_sans300;
+    font-weight: normal;
+    line-height: 20px;
+}
+#profilenamelink {
+	position: relative;
+    color: $lightGreen;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.results .header .dropdown-menu {
+	&.in {
+		display: block;
+	}
+	
+    top: 55px;
+    margin-top: 0;
+    background-color: $lightGreen;
+    border-radius: 0;
+    box-shadow: none;
+    right: -100px;
+    left: 230px;
+    
+    &::after {
+	    content: "";
+	    border-bottom: 10px solid $lightGreen !important;
+	    position: absolute;
+	    top: -20px;
+	    left: 30px;
+	    border: 10px solid transparent;
+	}
+	
+	a {
+	    color: white;
+	    font-family: museo_sans100;
+	    font-weight: normal;
+	    letter-spacing: 0.4px;
+	    line-height: 1.9;
+	    font-size: 14px;
+	    
+	    &:hover {
+		    color: white;
+		    background: $darkGreen;
+		}
+	}
+}
+
+
+
+@media screen and (min-width: 1400px) {
+	.results-text {
+	    position: fixed;
+	    left: 1024px;
+	    right: 70px;
+	    bottom: 137px;
+	    top: 250px;
+	    overflow-y: auto;
+	    
+	    
+	}
+
+	.results {
+	    /*overflow: visible;*/
+	}
+	.results h2 {
+	    position: fixed;
+	    left: 1024px;
+	    right: 70px;
+	    font-size: 19px;
+	    @media screen and (min-width: 1800px) {
+	    	font-size: 25px;
+	    }
+	}
+	.results-summary {
+	    margin-top: 15px;
+	}
+}
+
+.view-createnew .landing .atf {
+	position: absolute; /* enable scrolling the longer form */
+}
+
+p.errors {
+    color: #b33;
+}
+.has-error {
+    border-color: #b33 !important;
+}
+
+
+.about h2, #aboutModal h2 {
+    background: url(/coaching-tool/img/coaching/icon_about.png) no-repeat;
+    padding-left: 60px;
+}
+
+#exportModal h4.modal-title {
+    background: url(/coaching-tool/img/coaching/icon_blackexport.png) 0 50% no-repeat;
+    padding-left: 60px;
+    margin-top: 20px;
+}
+
+#emailModal h4.modal-title {
+    background: url(/coaching-tool/img/coaching/icon_blackmail.png) 0 50% no-repeat;
+    padding-left: 60px;
+}
+
+#saveModal h4.modal-title {
+    background: url(/coaching-tool/img/coaching/icon_blacksync.png) 0 50% no-repeat;
+    padding-left: 60px;
+}
+
+
+.pdfBtn, .rtfBtn {
+    width: 220px;
+    height: 220px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pdfBtn img, .rtfBtn img {
+    margin: 62px 0 0;
+}
+
+.pdfBtn {
+    margin: 0 16px 18px 0px;
+}
+.pdfBtn:hover, .rtfBtn:hover {
+    background-image:url(/coaching-tool/img/coaching/icon_greencheck.png);
+    background-position: 18px 19px;
+    background-repeat: no-repeat;
+}
+
+.pdfBtn.selected, .rtfBtn.selected {
+    background-image:url(/coaching-tool/img/coaching/icon_greencheck.png);
+    background-position: 18px 19px;
+    background-repeat: no-repeat;
+    background-color: #155C3A;
+}
+
+.pdfBtn img, .rtfBtn img {
+	margin: 62px 0 0;
+}
+#export-submit {
+display: none;
+}
+
+#saveModal textarea {
+    margin-left: 0;
+    resize: none;
+    width: 100%;
+}
+
+.modal-backdrop.in + .modal-backdrop.in {
+    z-index: 1041;
+}
+#emailModal {
+    z-index: 1042;
+}
+
+tr.sel td:first-child {
+    position: relative;
+}
+
+tr.sel td:first-child::before {
+    position: absolute;
+    content: "";
+    background: #25a56a;
+    width: 4px;
+    height: 100%;
+    padding-top: 20px;
+    box-sizing: content-box;
+    top: 0;
+    left: -14px;
+}
+
+.results-text a {
+    text-decoration: underline;
+}
+
+@-moz-document url-prefix() {
+	.landing .atf {
+		position: absolute; /* Fix transition in child. Lands in 34 https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
+	}
+}
+
+@import "ie8";
+
+@import "btt";
+
+@import "footer";
+
+
+a.logo-atc {
+    position: absolute;
+    z-index: 3;
+    height: 28px;
+    width: 260px;
+}
+
+.btn-about, .profile-dropdown {
+    display: none;
+}
+.profile-dropdown {
+	position: static;
+	min-width: 160px !important;
+	padding-bottom: 34px;
+}
+
+
+@media print {
+	a[href]:after { content: ""; }
+	
+	body { color: #000; }
+	.hascut .aftercut {
+	    display: inline;
+	}
+	.results-text .btn {
+	    display: none !important;
+	}
+	.loadmore {
+		display: none;
+	}
+
+	.secondnav {
+		display: none;
+	}
+	.results-sort {
+		display: none;
+	}
+	.actions {
+		display: none;
+	}
+	.results {
+		padding: 90px 60px 0 60px;
+	}
+	
+	.view-results .header .lr {
+		display: none;
+	}
+}
+
+

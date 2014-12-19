@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Some hosts may require you to use the `RewriteBase` directive.
+# If you need to use the `RewriteBase` directive, it should be the
+# absolute physical path to the directory that contains this htaccess file.
+#
+RewriteBase /academic-word-finder
+
+RewriteCond %{HTTP_HOST} ^www.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/academic-word-finder/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(.+)\.com$ [NC]
+RewriteRule ^(.*)$ http://%1.org/academic-word-finder/$1 [R=301,L] 
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+
+
+AddOutputFilterByType DEFLATE text/html text/css application/x-javascript

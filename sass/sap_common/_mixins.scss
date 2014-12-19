@@ -1,0 +1,53 @@
+@mixin bg($image, $repeat: no-repeat) {
+    background-image: url('imgs/'+$image);
+    background-repeat: $repeat;
+}
+
+@mixin bgwh($image, $w, $h) {
+    width: $w;
+    height: $h;
+    @include bg($image);
+}
+
+@mixin relcenter {
+    position: relative;
+    margin: 0 auto;
+}
+
+@mixin relexpand {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin absexpand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin box {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+@mixin icon($letter, $size)
+{
+    font-size: $size;
+    font-family: SAPIcons;
+    -webkit-font-smoothing: antialiased;
+    content: $letter;
+}
+
+@mixin iconFont()
+{
+    font-family: SAPIcons;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Variable settings for /addons/prefixer.scss
+$prefix-for-webkit:    true !default;
+$prefix-for-mozilla:   true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera:     true !default;
+$prefix-for-spec:      true !default; // required for keyframe mixin
