@@ -7,10 +7,12 @@ This is the source code of the Achieve the Core Academic Word Finder, accessible
 External Dependencies
 -----
 The tool depends on the following external API endpoints for user authentication and saving. Refer to the source code for the parameters and return values these endpoints should provide.
-POST /login *
-POST /register
-POST /edit-profile
-POST /vocab-mail
-POST /vocab-set-shared
-POST /forgotpass
+
+	POST /login *
+	POST /register
+	POST /edit-profile
+	POST /vocab-mail
+	POST /vocab-set-shared
+	POST /forgotpass
+	
 *Required to access the main functionality of the tool.
